@@ -11,12 +11,12 @@ static int af = 0;
 
 int main(int argc, char const *argv[])
 {
-        int sock,n;
+    int sock,n;
     struct hostent *hent;
     
     struct sockaddr_in servaddr = { 0 };
 
-    char host_name[] = "m";
+    char host_name[] = "www.csdn.net";
     char ip[32] = { 0 };
     
     char buf[] = "GET /index.html HTTP/1.1\r\n\
@@ -37,11 +37,14 @@ Accept-Language: zh-CN,zh;q=0.8,en;q=0.6\r\n\
         exit(sock);
     }
     
-    if(gethostname(host_name,sizeof(host_name)) == -1) {
-        exit(-1);
+
+    if (gethostname(host_name, sizeof(host_name)) < 0) {
+        perror("gethostname");
     }
-    
-    if((hent=gethostbyname(host_name))==NULL){
+
+
+    printf("%s -- %d",host_name,sizeof(host_name));
+    if((hent = gethostbyname(host_name))==NULL){
         perror("ip error");
         exit(2);
     }
