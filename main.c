@@ -37,12 +37,6 @@ Accept-Language: zh-CN,zh;q=0.8,en;q=0.6\r\n\
         exit(sock);
     }
     
-
-    if (gethostname(host_name, sizeof(host_name)) < 0) {
-        perror("gethostname");
-    }
-
-
     printf("%s -- %d",host_name,sizeof(host_name));
     if((hent = gethostbyname(host_name))==NULL){
         perror("ip error");
